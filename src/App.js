@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
-import Sum from './components/sum';
-// import Gh from './components/gh';
+import Input from './components/input';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      x: 0,
-      y: 5,
-      s: 'a'
+      inp1: '',
+      inp2: ''
     };
+  }
 
-    setInterval(()=>{
-      this.setState({x: Math.random(), y: Math.random()});
-    }, 1000);
+  inputChangeHandler1 = e => {
+    this.setState({inp1: e.target.value});
+  }
+
+  inputChangeHandler2 = e => {
+    this.setState({inp2: e.target.value});
+  }
+
+  inputChangeHandler = e => {
+    this.setState({[e.target.id]: e.target.value});
   }
 
   render() {
-    // const s = this.state.s;
-    const {x, y} = this.state;
+    console.log(this.state)
     return (
       <div className="App">
-        <Sum x={x} y={y} />
-        {/* <p>{s}</p> */}
-        {/* <Gh /> */}
+        <Input
+          changeHandler1={this.inputChangeHandler1}
+          changeHandler2={this.inputChangeHandler2}
+          changeHandler={this.inputChangeHandler}
+        />
       </div>
     );
   }
